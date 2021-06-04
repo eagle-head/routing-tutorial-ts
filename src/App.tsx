@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import ROUTES, { RenderRoutes } from "./routes";
-import { IRoute } from "./interfaces";
+import { IRoute } from "./routes/interfaces";
 
 function App() {
   const history = useHistory();
