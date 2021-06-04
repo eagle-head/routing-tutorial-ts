@@ -1,8 +1,7 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import ROUTES, { RenderRoutes } from "./routes";
-
+import ROUTES, { RenderRoutes, IRoute } from "./routes";
 
 function App() {
   const history = useHistory();
@@ -27,11 +26,11 @@ function App() {
 
 export default App;
 
-function displayRouteMenu(routes) {
+function displayRouteMenu(routes: IRoute[]) {
   /**
    * Render a single route as a list item link to the config's pathname
    */
-  function singleRoute(route) {
+  function singleRoute(route: IRoute) {
     return (
       <li key={route.key}>
         <Link to={route.path}>

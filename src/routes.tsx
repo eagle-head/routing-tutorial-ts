@@ -3,11 +3,13 @@ import { Route, Switch, Redirect } from "react-router-dom";
 
 import { Login } from "./Login";
 
-interface IRoute {
-  key?: string;
+export interface IRoutes {
+  routes?: IRoute[];
+}
+export interface IRoute extends IRoutes {
+  key: string;
   path: string;
   exact: boolean;
-  routes?: Array<IRoute>;
   component: (props: IRoute) => ReactElement<IRoute>;
 }
 
@@ -16,12 +18,12 @@ const RouteWithSubRoutes = (route: IRoute) => {
     <Route
       path={route.path}
       exact={route.exact}
-      render={(props) => <route.component {...props} routes={route.routes} />}
+      render={(props) => <route.component {...route} {...props} />}
     />
   );
 };
 
-const RenderRoutes: FC<IRoute> = ({ routes = [] }) => {
+const RenderRoutes: FC<IRoutes> = ({ routes = []}) => {
   return (
     <Switch>
       {routes.map((route, i) => {
@@ -32,7 +34,7 @@ const RenderRoutes: FC<IRoute> = ({ routes = [] }) => {
   );
 };
 
-const ROUTES: Array<IRoute> = [
+const ROUTES: IRoute[] = [
   { path: "/", key: "ROOT", exact: true, component: () => <Login /> },
   {
     path: "/app",
