@@ -1,17 +1,8 @@
-import React, { FC, ReactElement } from "react";
+import { FC } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 import { Login } from "./Login";
-
-export interface IRoutes {
-  routes?: IRoute[];
-}
-export interface IRoute extends IRoutes {
-  key: string;
-  path: string;
-  exact: boolean;
-  component: (props: IRoute) => ReactElement<IRoute>;
-}
+import { IRoute, IRoutes } from "./interfaces";
 
 const RouteWithSubRoutes = (route: IRoute) => {
   return (
@@ -23,7 +14,7 @@ const RouteWithSubRoutes = (route: IRoute) => {
   );
 };
 
-const RenderRoutes: FC<IRoutes> = ({ routes = []}) => {
+const RenderRoutes: FC<IRoutes> = ({ routes = [] }) => {
   return (
     <Switch>
       {routes.map((route, i) => {
