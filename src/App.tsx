@@ -1,4 +1,4 @@
-import React from "react";
+import { Fragment, Suspense } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import ROUTES, { RenderRoutes } from "./routes";
@@ -19,7 +19,9 @@ function App() {
         <button onClick={logout}>Log Out</button>
       </div>
       <div style={{ flex: 1, backgroundColor: "#aaa" }}>
-        <RenderRoutes routes={ROUTES} />
+        <Suspense fallback={<h1>Loading...</h1>}>
+          <RenderRoutes routes={ROUTES} />
+        </Suspense>
       </div>
     </div>
   );
@@ -48,10 +50,10 @@ function displayRouteMenu(routes: IRoute[]) {
         // if this route has sub-routes, then show the ROOT as a list item and recursively render a nested list of route links
         if (route.routes) {
           return (
-            <React.Fragment key={route.key}>
+            <Fragment key={route.key}>
               {singleRoute(route)}
               {displayRouteMenu(route.routes)}
-            </React.Fragment>
+            </Fragment>
           );
         }
 

@@ -1,8 +1,11 @@
-import { FC } from "react";
+import { FC, lazy } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { Login } from "../components/Login";
 import { IRoute, IRoutes } from "./interfaces";
+
+const Login = lazy(() =>
+  import("../components/Login").then(({ Login }) => ({ default: Login }))
+);
 
 const RouteWithSubRoutes = (route: IRoute) => {
   return (
