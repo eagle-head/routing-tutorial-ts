@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { Login } from "../Login";
+import { Login } from "../components/Login";
 import { IRoute, IRoutes } from "./interfaces";
 
 const RouteWithSubRoutes = (route: IRoute) => {
